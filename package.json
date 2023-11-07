@@ -4,7 +4,8 @@
   "description": "App to create publlic and private stories",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cross-env NODE_ENV=production node index",
+    "dev": "cross-env NODE_ENV=development nodemon index"
   },
   "keywords": [],
   "author": "",
