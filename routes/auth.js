@@ -15,10 +15,12 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
     }
 )
 
-// @desc    Profile Page
-// @route    GET /profile
-router.get('/profile', (req, res) => {
-    res.render('profile')
+// @desc    Logout
+// @route    GET /auth/logout
+router.get('/logout', (req, res) => {
+    req.logout()
+
+    res.redirect('/')
 })
 
 module.exports = router
