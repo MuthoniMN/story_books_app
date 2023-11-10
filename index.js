@@ -6,6 +6,8 @@ const connectDB = require('./config/db')
 const path = require('path')
 const passport = require('passport')
 const session = require('express-session')
+const MongoStore = require('connect-mongo')
+const mongoose = require('mongoose')
 
 const app = express()
 // load the environment variables
@@ -25,7 +27,8 @@ app.set('views', './views')
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }))
 
 // Passport middleware
