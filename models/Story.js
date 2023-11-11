@@ -7,7 +7,8 @@ const StorySchema = new mongoose.Schema({
     },
     storyTitle: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     story: {
         type: String,
@@ -16,11 +17,16 @@ const StorySchema = new mongoose.Schema({
     status: {
         type: String,
         required: true,
-        default: draft
+        default: 'public',
+        enum: ['public', 'private']
     },
     published: {
         type: Boolean,
         required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     createdAt: {
         type: Date
