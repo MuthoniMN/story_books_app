@@ -12,5 +12,10 @@
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/auth/logout">Logout</a></li>
         </ul>
+        <img src="{{profileImage}}" alt="User Profile Image"
+            class="right collection-image avatar circle small dropdown-trigger" data-target="dropdown1">
+        <ul id='dropdown1' class='dropdown-content profile'>
+            <li>{{displayName}}</li>
+        </ul>
     </div>
 </nav>

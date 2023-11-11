@@ -27,6 +27,14 @@
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems,);
+
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            let options = {
+                hover: true,
+                coverTrigger: false,
+                constrainWidth: false
+            }
+            var instances = M.Dropdown.init(elems, options);
         });
     </script>
 </body>
