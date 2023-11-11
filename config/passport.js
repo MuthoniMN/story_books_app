@@ -36,9 +36,9 @@ module.exports = function (passport) {
         });
     });
 
-    passport.deserializeUser(function (id, cb) {
+    passport.deserializeUser(async function (id, cb) {
         try {
-            let user = User.findOne(id)
+            let user = await User.findById(id).exec()
 
             cb(null, user)
         } catch (err) {
