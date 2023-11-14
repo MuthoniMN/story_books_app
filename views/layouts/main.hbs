@@ -10,6 +10,8 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
     <script src="https://kit.fontawesome.com/0acc85d45b.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../css/style.css">
@@ -40,6 +42,15 @@
             var instances = M.Dropdown.init(elems, options);
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems, options);
+
+            ClassicEditor
+                .create(document.querySelector('#story'))
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         });
     </script>
 </body>

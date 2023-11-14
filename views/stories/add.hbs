@@ -1,7 +1,7 @@
 <h1 class="center-align">Add a Story</h1>
 
 <div class="row">
-    <form class="col s12">
+    <form action="/stories" method="post" class="col s12">
         <div class="row">
             <div class="input-field col s6">
                 <input id="story_title" type="text" class="validate" name="story_title">
@@ -40,8 +40,8 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea" name="story"></textarea>
-                <label for="textarea1">Story</label>
+                <textarea id="story" class="materialize-textarea" name="story"></textarea>
+                <label for="story">Story</label>
             </div>
         </div>
 
