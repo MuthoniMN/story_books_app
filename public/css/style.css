@@ -33,3 +33,11 @@ i {
     text-align: center;
     margin: 0 auto;
 }
+
+.centered {
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
