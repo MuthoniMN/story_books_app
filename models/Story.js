@@ -29,7 +29,8 @@ const StorySchema = new mongoose.Schema({
         ref: 'User',
     },
     createdAt: {
-        type: Date
+        type: Date,
+        default: Date.now()
     }
 })
 
