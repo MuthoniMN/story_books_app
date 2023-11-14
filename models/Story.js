@@ -14,6 +14,10 @@ const StorySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    summary: {
+        type: String,
+        default: 'This is my story'
+    },
     status: {
         type: String,
         required: true,

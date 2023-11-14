@@ -1,3 +1,30 @@
 <h6>Dashboard</h6>
 <h3>Hey, {{name}}</h3>
-<p>Here are your stories.</p>
+
+{{#if stories}}
+<table class="striped responsive-table">
+    <thead>
+        <tr>
+            <th>Story Title</th>
+            <th>Summary</th>
+            <th>Status</th>
+            <th>Date Created</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each stories}}
+        <tr>
+            <td>
+                <a href="/stories/{{_id}}">{{storyTitle}}</a>
+            </td>
+            <td>{{summary}}</td>
+            <td>{{createdAt}}</td>
+            <td><span class="new badge" data-badge-caption="{{status}}"></span></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<p class="center-align heading">You have not created any stories yet.</p>
+<a href="" class="btn centered-btn red darken-1">Write your first story</a>
+{{/if}}

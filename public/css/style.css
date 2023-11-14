@@ -21,3 +21,15 @@ i {
 .profile {
     padding: 10px 12px 0 !important;
 }
+
+.heading {
+    font-size: 32px;
+    margin-top: 64px;
+}
+
+.centered-btn {
+    display: block;
+    width: fit-content;
+    text-align: center;
+    margin: 0 auto;
+}
