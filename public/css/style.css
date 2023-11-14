@@ -41,3 +41,31 @@ i {
     justify-content: center;
     align-items: center;
 }
+
+ul.dropdown-content li>span {
+    color: #e53935;
+}
+
+.input-field input[type=text]+label,
+.input-field textarea+label,
+.materialize-textarea:focus:not([readonly])+label {
+    color: #000 !important;
+}
+
+.input-field input[type=text],
+.input-field textarea,
+.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid rgba(19, 18, 18, 0.363) !important;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.274) !important;
+}
+
+.row .input-field input:focus,
+.row .input-field textarea:focus {
+    border-bottom: 1px solid #e53935 !important;
+    box-shadow: 0 1px 0 0 #e53935 !important
+}
+
+.row .input-field input:focus+label,
+.row .input-field textarea:focus+label {
+    color: #e53935 !important;
+}

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StoryBooks App</title>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     <script src="https://kit.fontawesome.com/0acc85d45b.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -22,6 +22,8 @@
         {{{body}}}
     </div>
     <!-- Compiled and minified JavaScript -->
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script>
@@ -36,6 +38,8 @@
                 constrainWidth: false
             }
             var instances = M.Dropdown.init(elems, options);
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
         });
     </script>
 </body>
