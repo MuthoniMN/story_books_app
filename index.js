@@ -44,6 +44,12 @@ app.use(session({
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }))
 
+// Set global var
+app.use(function (req, res, next) {
+    res.locals.user = req.user || null
+    next()
+})
+
 // Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())

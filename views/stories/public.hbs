@@ -8,12 +8,13 @@
             <div class="card-image">
                 <img src="../{{featuredImage}}" height="300" width="200" alt="{{summary}}">
                 <span class="card-title">{{storyTitle}}</span>
+                {{{editIcon user ./user _id}}}
             </div>
             <div class="card-content">
                 <p>{{summary}}</p>
                 <div class="chip center-align">
                     <img src="{{user.image}}" alt="{{user.displayName}}">
-                    <span><a href="/stories/user/{{story.user._id}}">{{user.displayName}}</a></span>
+                    <span><a href="/stories/user/{{user._id}}">{{user.displayName}}</a></span>
                 </div>
             </div>
             <div class="card-action">
