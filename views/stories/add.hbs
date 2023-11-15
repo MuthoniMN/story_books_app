@@ -1,19 +1,20 @@
 <h1 class="center-align">Add a Story</h1>
 
 <div class="row">
-    <form action="/stories" method="post" class="col s12">
+    <form action="/stories/add" method="post" class="col s12" enctype="multipart/form-data">
         <div class="row">
             <div class="input-field col s6">
-                <input id="story_title" type="text" class="validate" name="story_title">
-                <label for="story_title">Story Title</label>
+                <input id="storyTitle" type="text" class="validate" name="storyTitle">
+                <label for="storyTitle">Story Title</label>
             </div>
             <div class="file-field input-field col s6">
                 <div class="btn red darken-1">
                     <span>Upload</span>
-                    <input type="file" name="image">
+                    <input type="file" name="featuredImage">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Upload your featured image" name="image">
+                    <input class="file-path validate" type="text" placeholder="Upload your featured image"
+                        name="featuredImage">
                 </div>
             </div>
         </div>
@@ -24,14 +25,14 @@
             </div>
         </div>
         <div class="input-field col s12 m6">
-            <select name="privacy">
+            <select name="status">
                 <option value="public" selected>Public</option>
                 <option value="private">Private</option>
             </select>
             <label>Privacy</label>
         </div>
         <div class="input-field col s12 m6">
-            <select name="status">
+            <select name="published">
                 <option value="publish" class="left" selected>Publish</option>
                 <option value="draft" class="left">Save as draft</option>
             </select>

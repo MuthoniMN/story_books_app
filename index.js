@@ -18,6 +18,10 @@ require('./config/passport')(passport)
 
 connectDB()
 
+//body parser
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+
 // Handlebars
 app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs')
