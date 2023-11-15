@@ -22,8 +22,17 @@ connectDB()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+// Handlebars Helpers
+const { formatDate, stripTags, editIcon } = require('./helpers/hbs')
+
 // Handlebars
-app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs' }));
+app.engine('.hbs', engine({
+    helpers: {
+        formatDate,
+        stripTags,
+        editIcon
+    }, defaultLayout: 'main', extname: '.hbs'
+}));
 app.set('view engine', '.hbs')
 app.set('views', './views')
 

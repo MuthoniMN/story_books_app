@@ -17,11 +17,39 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
     try {
         req.body.user = req.user.id
         req.body.published = req.body.published === "publish" ? true : false
-        req.body.featuredImage = req.file.path.substring(req.file.path.indexOf('/') + 1)
+        req.body.featuredImage = req.file.path.substring(req.file.path.replace('public/', ''))
 
         await Story.create(req.body)
         res.redirect('/dashboard')
 
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+})
+
+// @desc    Get public stories
+// @route  GET /stories/
+router.get('/', ensureAuth, async (req, res) => {
+    try {
+        const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: "desc" }).lean()
+        res.render('stories/public', {
+            stories
+        })
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+})
+
+// @desc    Get public stories
+// @route  GET /stories/
+router.get('/:id', ensureAuth, async (req, res) => {
+    try {
+        const story = await Story.findById(req.params.id).populate('user').lean()
+        res.render('stories/story', {
+            story
+        })
     } catch (err) {
         console.error(err)
         res.render('errors/500')

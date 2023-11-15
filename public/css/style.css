@@ -42,6 +42,11 @@ i {
     align-items: center;
 }
 
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
 ul.dropdown-content li>span {
     color: #e53935;
 }
@@ -76,4 +81,9 @@ a {
 
 span.new.badge {
     background: #e53935;
+}
+
+.credentials {
+    display: flex;
+    justify-content: space-between;
 }

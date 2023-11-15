@@ -1,10 +1,9 @@
-<h6>Dashboard</h6>
-<h3>Hey, {{name}}</h3>
+<h1>Stories</h1>
 
 {{#if stories}}
 <div class="row">
     {{#each stories}}
-    <div class="col s6">
+    <div class="col s4">
         <div class="card">
             <div class="card-image">
                 <img src="../{{featuredImage}}" height="300" width="200" alt="{{summary}}">
@@ -12,7 +11,10 @@
             </div>
             <div class="card-content">
                 <p>{{summary}}</p>
-                <p class="right-align">{{formatDate createdAt 'MMMM DD YYYY, h:mm:ss a'}}</p>
+                <div class="chip center-align">
+                    <img src="{{user.image}}" alt="{{user.displayName}}">
+                    <span><a href="/stories/user/{{story.user._id}}">{{user.displayName}}</a></span>
+                </div>
             </div>
             <div class="card-action">
                 <a href="/stories/{{_id}}" style="color: #e53935;">Read Story</a>
@@ -25,7 +27,6 @@
 
 {{else}}
 <section class="centered">
-    <p class="center-align heading">You have not created any stories yet.</p>
-    <a href="/stories/add" class="btn centered-btn red darken-1">Write your first story</a>
+    <p class="center-align heading">No stories yet.</p>
 </section>
 {{/if}}
