@@ -69,3 +69,11 @@ ul.dropdown-content li>span {
 .row .input-field textarea:focus+label {
     color: #e53935 !important;
 }
+
+a {
+    color: #e53935;
+}
+
+span.new.badge {
+    background: #e53935;
+}
