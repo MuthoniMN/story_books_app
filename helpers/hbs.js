@@ -33,4 +33,15 @@ module.exports = {
                 ' selected="selected"$&'
             )
     },
+    deleteIcon: function (storyUser, loggedUser, storyId) {
+        if (storyUser._id.toString() == loggedUser._id.toString()) {
+            return `<div class="credentials editAndDelete right">
+                <a href="/stories/edit/${storyId}" class="btn halfway-fab red darken-1"><i class="fas fa-edit fa-small"></i></a>
+                <form action="/stories/{{_id}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn red darken-1"><i class="fa-solid fa-trash fa-lg"></i></button>
+                    </form>
+            </div>`
+        }
+    },
 }

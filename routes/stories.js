@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const { ensureAuth } = require("../middleware/auth")
 const Story = require("../models/Story")
-const upload = require('../config/cloudinary');
+const upload = require('../config/multer');
 
 // @desc    Get story page
 // @route  GET /stories/add
@@ -16,7 +16,7 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
     try {
         req.body.user = req.user.id
         req.body.published = req.body.published === "publish" ? true : false
-        req.body.featuredImage = req.file.path.substring(req.file.path.replace('public/', ''))
+        req.body.featuredImage = req.file.path.replace('public', '')
 
         await Story.create(req.body)
         res.redirect('/dashboard')
@@ -49,7 +49,8 @@ router.get('/:id', ensureAuth, async (req, res) => {
         const stories = await Story.find({ user: req.user.id, _id: { $ne: req.params.id } }).lean()
         res.render('stories/story', {
             story,
-            stories
+            stories,
+            user: req.user
         })
     } catch (err) {
         console.error(err)
@@ -101,6 +102,18 @@ router.put('/edit/:id', ensureAuth, async (req, res) => {
             res.redirect(`/stories/${req.params.id}`)
         }
 
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+})
+
+// @desc    Delete story
+// @route  DELETE /stories/:id
+router.delete('/:id', ensureAuth, async (req, res) => {
+    try {
+        await Story.deleteOne({ _id: req.params.id })
+        res.redirect('/dashboard')
     } catch (err) {
         console.error(err)
         res.render('errors/500')

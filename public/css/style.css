@@ -87,3 +87,11 @@ span.new.badge {
     display: flex;
     justify-content: space-between;
 }
+
+.editAndDelete {
+    width: fit-content;
+}
+
+.editAndDelete a {
+    margin-left: 12px;
+}

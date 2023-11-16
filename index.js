@@ -19,6 +19,12 @@ require('./config/passport')(passport)
 
 connectDB()
 
+// Set global var
+app.use(function (req, res, next) {
+    res.locals.user = req.user || null
+    next()
+})
+
 //body parser
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -34,7 +40,7 @@ app.use(methodOverride(function (req, res) {
 }))
 
 // Handlebars Helpers
-const { formatDate, stripTags, editIcon, select } = require('./helpers/hbs')
+const { formatDate, stripTags, editIcon, select, deleteIcon } = require('./helpers/hbs')
 
 // Handlebars
 app.engine('.hbs', engine({
@@ -42,7 +48,8 @@ app.engine('.hbs', engine({
         formatDate,
         stripTags,
         editIcon,
-        select
+        select,
+        deleteIcon
     }, defaultLayout: 'main', extname: '.hbs'
 }));
 app.set('view engine', '.hbs')
@@ -55,12 +62,6 @@ app.use(session({
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }))
-
-// Set global var
-app.use(function (req, res, next) {
-    res.locals.user = req.user || null
-    next()
-})
 
 // Passport middleware
 app.use(passport.initialize())

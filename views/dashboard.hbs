@@ -18,7 +18,10 @@
             <div class="card-action credentials">
                 <a href="/stories/{{_id}}" style="color: #e53935;">Read Story</a>
                 <a href="/stories/delete/{{_id}}">
-                    <i class="fa-solid fa-trash fa-lg" style="color: #e53935;text-align:right; "></i>
+                    <form action="/stories/{{_id}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn red darken-1"><i class="fa-solid fa-trash fa-lg"></i></button>
+                    </form>
                 </a>
             </div>
         </div>

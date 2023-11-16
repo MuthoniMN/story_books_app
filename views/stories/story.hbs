@@ -1,5 +1,6 @@
 <h1>{{story.storyTitle}}</h1>
 <img src="../{{story.featuredImage}}" alt="{{story.storyTitle}}" class="center">
+{{{deleteIcon story.user user story._id}}}
 <div class="credentials">
     <a href="/stories/user/{{story.user._id}}">{{story.user.displayName}}</a>
     <p>{{formatDate story.createdAt 'MMMM DD YYYY, h:mm:ss a'}}</p>
