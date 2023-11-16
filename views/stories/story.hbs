@@ -6,3 +6,22 @@
 </div>
 
 {{{story.story}}}
+
+{{#if stories}}
+<h2>Other Stories By {{story.user.displayName}}</h2>
+<div class="row">
+    {{#each stories}}
+    <div class="col s6 m3">
+        <div class="card red darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">{{storyTitle}}</span>
+                <p>{{summary}}</p>
+            </div>
+            <div class="card-action">
+                <a href="/stories/:id">Read Story</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}

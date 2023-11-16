@@ -13,7 +13,6 @@ router.get('/add', ensureAuth, (req, res) => {
 // @desc    Add a story
 // @route  POST /stories/add
 router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res) => {
-    console.log(req.body)
     try {
         req.body.user = req.user.id
         req.body.published = req.body.published === "publish" ? true : false
@@ -42,14 +41,66 @@ router.get('/', ensureAuth, async (req, res) => {
     }
 })
 
-// @desc    Get public stories
-// @route  GET /stories/
+// @desc    Get story
+// @route  GET /stories/:id
 router.get('/:id', ensureAuth, async (req, res) => {
     try {
-        const story = await Story.findById(req.params.id).populate('user').lean()
+        const story = await Story.findById(req.params.id).populate('user').limit(3).lean()
+        const stories = await Story.find({ user: req.user.id, _id: { $ne: req.params.id } }).lean()
         res.render('stories/story', {
-            story
+            story,
+            stories
         })
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+})
+
+// @desc    Get edit page
+// @route  GET /stories/edit/:id
+router.get('/edit/:id', ensureAuth, async (req, res) => {
+    try {
+        const story = await Story.findById(req.params.id).lean()
+        if (!story) {
+            return res.render('error/404')
+        }
+
+        if (story.user != req.user.id) {
+            res.redirect('/stories')
+        } else {
+            res.render('stories/edit', {
+                story,
+            })
+        }
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+})
+
+// @desc    Edit story
+// @route  PUT  /stories/edit/:id
+router.put('/edit/:id', ensureAuth, async (req, res) => {
+    try {
+        const story = await Story.findById(req.params.id).lean()
+        req.body.user = req.user.id
+        req.body.published = req.body.published === "publish" ? true : false
+
+        if (!story) {
+            return res.render('error/404')
+        }
+
+        if (story.user != req.user.id) {
+            res.redirect('/stories')
+        } else {
+            await Story.findByIdAndUpdate(req.params.id, req.body, {
+                new: true,
+
+            })
+            res.redirect(`/stories/${req.params.id}`)
+        }
+
     } catch (err) {
         console.error(err)
         res.render('errors/500')

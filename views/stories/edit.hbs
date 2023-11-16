@@ -1,0 +1,60 @@
+<h1 class="center-align">Edit Story</h1>
+
+<div class="row">
+    <form action="/stories/edit/{{story._id}}" method="post" class="col s12"
+        enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="storyTitle" type="text" class="validate" name="storyTitle" value="{{story.storyTitle}}">
+                <label for="storyTitle">Story Title</label>
+            </div>
+            <div class="file-field input-field col s6">
+                <div class="btn red darken-1">
+                    <span>Upload</span>
+                    <input type="file" name="featuredImage" disabled>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Upload your featured image"
+                        name="featuredImage" value="{{story.featuredImage}}" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="summary" type="text" class="validate" name="summary" value="{{story.summary}}">
+                <label for="summary">Short Summary</label>
+            </div>
+        </div>
+        <div class="input-field col s12 m6">
+            <select name="status">
+                {{#select story.status}}
+                <option value="public" selected>Public</option>
+                <option value="private">Private</option>
+                {{/select}}
+            </select>
+            <label>Privacy</label>
+        </div>
+        <div class="input-field col s12 m6">
+            <select name="published">
+                {{#if story.published}}
+                <option value="publish" class="left" selected>Publish</option>
+                <option value="draft" class="left">Save as draft</option>
+                {{else}}
+                <option value="publish" class="left">Publish</option>
+                <option value="draft" class="left" selected>Save as draft</option>
+                {{/if}}
+            </select>
+            <label>Status</label>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <textarea id="story" class="materialize-textarea" name="story">{{story.story}}</textarea>
+                <label for="story">Story</label>
+            </div>
+        </div>
+
+        <input type="submit" value="Update Story" class="btn centered-btn red darken-1">
+    </form>
+</div>

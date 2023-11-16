@@ -8,6 +8,7 @@ const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
 const app = express()
 // load the environment variables
@@ -22,15 +23,26 @@ connectDB()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+// Method Overriding
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
+
 // Handlebars Helpers
-const { formatDate, stripTags, editIcon } = require('./helpers/hbs')
+const { formatDate, stripTags, editIcon, select } = require('./helpers/hbs')
 
 // Handlebars
 app.engine('.hbs', engine({
     helpers: {
         formatDate,
         stripTags,
-        editIcon
+        editIcon,
+        select
     }, defaultLayout: 'main', extname: '.hbs'
 }));
 app.set('view engine', '.hbs')
