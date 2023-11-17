@@ -2,6 +2,7 @@
 A web application that allows users to share private and public stories
 
 ![StoryBooks App Demo](demo.gif)
+
 [View Demo](https://storybooksapp.onrender.com/)
 
 ## Features
