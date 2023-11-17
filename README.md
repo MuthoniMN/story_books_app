@@ -18,6 +18,7 @@ A web application that allows users to share private and public stories
 - Express Handlebars
 - Passport for Google Auth
 - MongoDB and Mongoose
+- Materialize CSS
 
 ## Installation Guide
 1. Create a directory for the project
