@@ -132,5 +132,6 @@ span.new.badge {
 @media screen and (max-width: 450px) {
     nav .nav-wrapper.container .brand-logo{
         left: 24px;
+        transform: translateX(0);
     }
 }
