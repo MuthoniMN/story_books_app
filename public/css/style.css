@@ -96,6 +96,13 @@ span.new.badge {
     margin-left: 12px;
 }
 
-.feature_icons{
+.feature_icons {
     font-size: 32px;
+    text-align: center;
+}
+
+.hero {
+    height: 70vh;
+    background: url('https://unsplash.com/photos/person-holding-ballpoint-pen-writing-on-notebook-505eectW54k');
+    border: 30px inset rgba(0, 0, 0, 0.185);
 }
