@@ -4,7 +4,7 @@ const { ensureAuth } = require("../middleware/auth")
 const Story = require("../models/Story")
 const upload = require('../config/multer');
 
-// @desc    Get story page
+// @desc    Add a story page
 // @route  GET /stories/add
 router.get('/add', ensureAuth, (req, res) => {
     res.render('stories/add')
@@ -33,6 +33,20 @@ router.get('/', ensureAuth, async (req, res) => {
     try {
         const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/public', {
+            stories
+        })
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+})
+
+// @desc    Get private stories
+// @route  GET /stories/private
+router.get('/', ensureAuth, async (req, res) => {
+    try {
+        const stories = await Story.find({ user: req.user.id, status: 'private' }).populate('user').sort({ createdAt: "desc" }).lean()
+        res.render('stories/private', {
             stories
         })
     } catch (err) {
