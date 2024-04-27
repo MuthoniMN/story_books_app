@@ -109,3 +109,7 @@ span.new.badge {
     background-size: cover;
     background-attachment: fixed;
 }
+
+.landing>*{
+    padding: 56px 0;
+}
