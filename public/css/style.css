@@ -107,7 +107,10 @@ span.new.badge {
 }
 
 .hero {
-    width: 100%;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    right: 0;
     margin: 0;
     height: 70vh;
     text-align: center;
