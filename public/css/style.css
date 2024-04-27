@@ -108,7 +108,7 @@ span.new.badge {
 
 .hero {
     position: absolute;
-    top: 60px;
+    top: 57px;
     left: 0;
     right: 0;
     margin: 0;
@@ -127,4 +127,10 @@ span.new.badge {
 
 .landing>* {
     padding: 72px 32px;
+}
+
+@media screen and (max-width: 450px) {
+    .brand-logo{
+        left: 24px;
+    }
 }
