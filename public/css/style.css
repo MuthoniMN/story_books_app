@@ -130,7 +130,7 @@ span.new.badge {
 }
 
 @media screen and (max-width: 450px) {
-    .brand-logo{
+    nav .nav-wrapper.container .brand-logo{
         left: 24px;
     }
 }
