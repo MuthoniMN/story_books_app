@@ -1,0 +1,37 @@
+<h1>Your Private Stories</h1>
+
+{{#if stories}}
+<div class="row">
+    {{#each stories}}
+    <div class="col l4 m6 s12">
+        <div class="card">
+            <div class="card-image">
+                <img src="../{{featuredImage}}" height="300" width="200" alt="{{summary}}">
+                <span class="card-title">{{storyTitle}}</span>
+                {{{editIcon user ./user _id}}}
+            </div>
+            <div class="card-content">
+                <p>{{summary}}</p>
+                <p class="right-align">{{formatDate createdAt 'MMMM DD YYYY, h:mm:ss a'}}</p>
+            </div>
+            <div class="card-action credentials">
+                <a href="/stories/{{_id}}" style="color: #e53935;">Read Story</a>
+                <a href="/stories/delete/{{_id}}">
+                    <form action="/stories/{{_id}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn red darken-1"><i class="fa-solid fa-trash fa-lg"></i></button>
+                    </form>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{/each}}
+</div>
+
+{{else}}
+<section class="centered">
+    <p class="center-align heading">You have not created a private stories yet.</p>
+    <a href="/stories/add" class="btn centered-btn red darken-1">Write your first story</a>
+</section>
+{{/if}}
