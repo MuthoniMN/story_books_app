@@ -129,9 +129,6 @@ span.new.badge {
     padding: 72px 32px;
 }
 
-@media screen and (max-width: 450px) {
-    nav .nav-wrapper.container .brand-logo{
-        left: 24px;
-        transform: translateX(0);
-    }
+nav .nav-logo{
+    font-size: 2.1rem;
 }
