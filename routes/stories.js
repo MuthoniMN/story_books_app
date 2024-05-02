@@ -33,6 +33,9 @@ router.get('/', ensureAuth, async (req, res) => {
     try {
         const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/public', {
+            name: req.user.firstName,
+            profileImage: req.user.image,
+            displayName: req.user.displayName,
             stories
         })
     } catch (err) {
@@ -47,6 +50,9 @@ router.get('/private', ensureAuth, async (req, res) => {
     try {
         const stories = await Story.find({ user: req.user.id, status: 'private' }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/private', {
+            name: req.user.firstName,
+            profileImage: req.user.image,
+            displayName: req.user.displayName,
             stories
         })
     } catch (err) {
@@ -61,6 +67,9 @@ router.get('/drafts', ensureAuth, async (req, res) => {
     try {
         const stories = await Story.find({ user: req.user.id, published: false }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/drafts', {
+            name: req.user.firstName,
+            profileImage: req.user.image,
+            displayName: req.user.displayName,
             stories
         })
     } catch (err) {
@@ -84,6 +93,9 @@ router.get('/:id', ensureAuth, async (req, res) => {
             res.redirect('/stories')
         } else {
             res.render('stories/story', {
+                name: req.user.firstName,
+                profileImage: req.user.image,
+                displayName: req.user.displayName,
                 story,
                 stories,
                 user: req.user
@@ -108,6 +120,9 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
             res.redirect('/stories')
         } else {
             res.render('stories/edit', {
+                name: req.user.firstName,
+                profileImage: req.user.image,
+                displayName: req.user.displayName,
                 story,
             })
         }
