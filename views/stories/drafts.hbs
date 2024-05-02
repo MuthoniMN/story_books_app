@@ -12,10 +12,16 @@
             </div>
             <div class="card-content">
                 <p>{{summary}}</p>
-                <div class="chip center-align">
-                    <img src="{{user.image}}" alt="{{user.displayName}}">
-                    <span><a href="/stories/user/{{user._id}}">{{user.displayName}}</a></span>
-                </div>
+                <p class="right-align">{{formatDate createdAt 'MMMM DD YYYY, h:mm:ss a'}}</p>
+            </div>
+            <div class="card-action credentials">
+                <a href="/stories/{{_id}}" style="color: #e53935;">Read Story</a>
+                <a href="/stories/delete/{{_id}}">
+                    <form action="/stories/{{_id}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn red darken-1"><i class="fa-solid fa-trash fa-lg"></i></button>
+                    </form>
+                </a>
             </div>
         </div>
     </div>
