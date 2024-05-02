@@ -55,6 +55,20 @@ router.get('/private', ensureAuth, async (req, res) => {
     }
 })
 
+// @desc    Get drafts
+// @route  GET /stories/drafts
+router.get('/drafts', ensureAuth, async (req, res) => {
+    try {
+        const stories = await Story.find({ user: req.user.id, published: false }).populate('user').sort({ createdAt: "desc" }).lean()
+        res.render('stories/drafts', {
+            stories
+        })
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500')
+    }
+})
+
 // @desc    Get story
 // @route  GET /stories/:id
 router.get('/:id', ensureAuth, async (req, res) => {
