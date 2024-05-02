@@ -43,7 +43,7 @@ router.get('/', ensureAuth, async (req, res) => {
 
 // @desc    Get private stories
 // @route  GET /stories/private
-router.get('/', ensureAuth, async (req, res) => {
+router.get('/private', ensureAuth, async (req, res) => {
     try {
         const stories = await Story.find({ user: req.user.id, status: 'private' }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/private', {
