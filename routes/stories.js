@@ -17,6 +17,7 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
         req.body.user = req.user.id
         req.body.published = req.body.published === "publish" ? true : false
         req.body.featuredImage = req.file.path.replace('public', '')
+        console.log(req.body);
 
         await Story.create(req.body)
         res.redirect('/dashboard')
