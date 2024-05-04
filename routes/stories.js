@@ -3,6 +3,7 @@ const router = express.Router()
 const { ensureAuth } = require("../middleware/auth")
 const Story = require("../models/Story")
 const upload = require('../config/multer');
+const cloudinary = require('../config/cloudinary');
 
 // @desc    Add a story page
 // @route  GET /stories/add
@@ -16,7 +17,15 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
     try {
         req.body.user = req.user.id
         req.body.published = req.body.published === "publish" ? true : false
-        req.body.featuredImage = req.file.path.replace('public', '')
+
+        //  saving image on Cloudinary
+        cloudinary.v2.uploader
+            .upload(req.file.path)
+            .then(result=>{
+                console.log(result)
+                req.body.featuredImage = result.url;
+            })
+            .catch(err => console.error(err));
         console.log(req.body);
 
         await Story.create(req.body)
