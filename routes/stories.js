@@ -24,7 +24,9 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
 
         //  saving image on Cloudinary
         cloudinary.uploader
-            .upload(req.file.path)
+            .upload(req.file.path, {
+                public_id: req.body.storyTitle.replace(" ", "_")
+            })
             .then(result=>{
                 console.log(result)
                 req.body.featuredImage = result.url;
