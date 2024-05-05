@@ -28,12 +28,13 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
             .then(result=>{
                 console.log(result)
                 req.body.featuredImage = result.url;
+
+                console.log(req.body);
+
+                await Story.create(req.body)
+                res.redirect('/dashboard')
             })
             .catch(err => console.error(err));
-        console.log(req.body);
-
-        await Story.create(req.body)
-        res.redirect('/dashboard')
 
     } catch (err) {
         console.error(err)
