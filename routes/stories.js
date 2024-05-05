@@ -48,7 +48,7 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
 // @route  GET /stories/
 router.get('/', ensureAuth, async (req, res) => {
     try {
-        const stories = await Story.find({ status: 'public' }).populate('user').sort({ createdAt: "desc" }).lean()
+        const stories = await Story.find({ status: 'public', published: true }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/public', {
             name: req.user.firstName,
             profileImage: req.user.image,
@@ -65,7 +65,7 @@ router.get('/', ensureAuth, async (req, res) => {
 // @route  GET /stories/private
 router.get('/private', ensureAuth, async (req, res) => {
     try {
-        const stories = await Story.find({ user: req.user.id, status: 'private' }).populate('user').sort({ createdAt: "desc" }).lean()
+        const stories = await Story.find({ user: req.user.id, status: 'private', published: true }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/private', {
             name: req.user.firstName,
             profileImage: req.user.image,
