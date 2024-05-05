@@ -45,8 +45,8 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
 })
 
 // @desc    Get public stories
-// @route  GET /stories/
-router.get('/', ensureAuth, async (req, res) => {
+// @route  GET /stories/public
+router.get('/public', ensureAuth, async (req, res) => {
     try {
         const stories = await Story.find({ status: 'public', published: true }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/public', {
