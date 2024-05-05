@@ -8,7 +8,11 @@ const cloudinary = require('../config/cloudinary');
 // @desc    Add a story page
 // @route  GET /stories/add
 router.get('/add', ensureAuth, (req, res) => {
-    res.render('stories/add')
+    res.render('stories/add', {
+        name: req.user.firstName,
+        profileImage: req.user.image,
+        displayName: req.user.displayName,
+    })
 })
 
 // @desc    Add a story
