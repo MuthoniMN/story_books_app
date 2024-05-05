@@ -134,7 +134,7 @@ nav .nav-logo{
 }
 
 .badge-position{
-    position: relative;
+    position: absolute;
     top: 8px;
     left: 97%;
 }
