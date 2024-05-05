@@ -27,7 +27,7 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
             .upload(req.file.path, {
                 public_id: req.body.storyTitle.replace(" ", "_")
             })
-            .then(result=>{
+            .then(async (result)=>{
                 console.log(result)
                 req.body.featuredImage = result.url;
 
