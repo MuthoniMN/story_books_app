@@ -132,3 +132,9 @@ span.new.badge {
 nav .nav-logo{
     font-size: 2.1rem;
 }
+
+.badge-position{
+    position: relative;
+    top: 8px;
+    left: 97%;
+}
