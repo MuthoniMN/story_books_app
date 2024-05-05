@@ -99,8 +99,8 @@ router.get('/drafts', ensureAuth, async (req, res) => {
 // @route  GET /stories/:id
 router.get('/:id', ensureAuth, async (req, res) => {
     try {
-        const story = await Story.findById(req.params.id).populate('user').limit(3).lean()
-        const stories = await Story.find({ user: req.user.id, _id: { $ne: req.params.id } }).lean()
+        const story = await Story.findById(req.params.id).populate('user').limit(1).lean()
+        const stories = await Story.find({ user: req.user.id, _id: { $ne: req.params.id } }).limit(3).lean()
 
         if (!story) {
             return res.render('error/404')
