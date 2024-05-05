@@ -27,7 +27,7 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
             .upload(req.file.path, {
                 public_id: req.body.storyTitle.replace(" ", "_")
             })
-            .then(async (result)=>{
+            .then(async (result) => {
                 console.log(result)
                 req.body.featuredImage = result.url;
 
@@ -45,8 +45,8 @@ router.post('/add', ensureAuth, upload.single("featuredImage"), async (req, res)
 })
 
 // @desc    Get public stories
-// @route  GET /stories/public
-router.get('/public', ensureAuth, async (req, res) => {
+// @route  GET /stories/
+router.get('/', ensureAuth, async (req, res) => {
     try {
         const stories = await Story.find({ status: 'public', published: true }).populate('user').sort({ createdAt: "desc" }).lean()
         res.render('stories/public', {
@@ -106,18 +106,14 @@ router.get('/:id', ensureAuth, async (req, res) => {
             return res.render('error/404')
         }
 
-        if (story.user != req.user.id) {
-            res.redirect('/stories')
-        } else {
-            res.render('stories/story', {
-                name: req.user.firstName,
-                profileImage: req.user.image,
-                displayName: req.user.displayName,
-                story,
-                stories,
-                user: req.user
-            })
-        }
+        res.render('stories/story', {
+            name: req.user.firstName,
+            profileImage: req.user.image,
+            displayName: req.user.displayName,
+            story,
+            stories,
+            user: req.user
+        })
     } catch (err) {
         console.error(err)
         res.render('errors/500')
